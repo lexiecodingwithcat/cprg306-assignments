@@ -4,7 +4,7 @@ function Item({ name, quantity, category }) {
       <li>
         <h4 className="text-xl font-bold">{name}</h4>
         <p>
-          Buy{quantity} in {category}
+          Buy {quantity} in {category}
         </p>
       </li>
     </ul>
