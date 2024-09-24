@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Button from "./Button";
 function NewItem() {
   const [quantity, setQuantity] = useState(1);
   const isDisabledDec = quantity === 1 ? true : false;
@@ -17,20 +18,12 @@ function NewItem() {
       <div className="h-12 bg-black w-36 rounded-md flex items-center justify-evenly">
         <span>{quantity}</span>
         <div className="flex gap-1">
-          <button
-            className="h-6 w-10 rounded-md disabled:bg-gray-500  bg-blue-500 hover:bg-blue-700 "
-            disabled={isDisabledDec}
-            onClick={decrement}
-          >
+          <Button disabled={isDisabledDec} onClick={decrement}>
             -
-          </button>
-          <button
-            className="h-6 w-10 bg-blue-500 hover:bg-blue-700 rounded-md  disabled:bg-gray-500"
-            onClick={increment}
-            disabled={isDisabledInc}
-          >
+          </Button>
+          <Button disabled={isDisabledInc} onClick={increment}>
             +
-          </button>
+          </Button>
         </div>
       </div>
     </main>
