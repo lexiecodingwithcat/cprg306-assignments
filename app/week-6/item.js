@@ -1,6 +1,6 @@
 function Item({ name, quantity, category }) {
   return (
-    <ul className="bg-sky-200 w-[30%] py-3 pl-3 rounded">
+    <ul className="bg-sky-200 w-[50%] py-3 pl-3 rounded">
       <li>
         <h4 className="text-xl font-bold">{name}</h4>
         <p>

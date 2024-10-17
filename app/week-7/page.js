@@ -13,11 +13,18 @@ function Page() {
     );
     setShoppingItems(sortedItems);
   }
+  function handleAddItem(item) {
+    setShoppingItems([...shoppingItems, item]);
+  }
 
   return (
-    <div>
-      <h1>Shopping List</h1>
-      <Form />
+    <div className="ml-5 mb-5 mt-10 w-1/4">
+      <h1 className="text-3xl ml-5 mb-10 font-extrabold text-center ">
+        Shopping List
+      </h1>
+      <div className=" ml-5 ">
+        <Form handleAddItem={handleAddItem} />
+      </div>
       <ShoppingList shoppingItems={shoppingItems} handleSort={handleSort} />
     </div>
   );

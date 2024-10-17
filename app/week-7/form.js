@@ -3,15 +3,26 @@ import { useState } from "react";
 import QuantitySelector from "../week-4/quantitySelector";
 import Selection from "../week-5/selection";
 
-function Form() {
+function Form({ handleAddItem }) {
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState(1);
+  function generateRandomId(length = 8) {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return result;
+  }
+
   function submitForm(e) {
     e.preventDefault();
-    alert(
-      `Added item: ${itemName}, quantity: ${quantity}, category: ${category}`
-    );
+    const item = { id: generateRandomId(), name: itemName, category, quantity };
+    handleAddItem(item);
   }
   return (
     <form
