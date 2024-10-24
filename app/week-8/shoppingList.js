@@ -1,7 +1,7 @@
-import Button from "../week-6/button";
-import ItemList from "../week-6/item-list";
+import Button from "./button";
+import ItemList from "./item-list";
 
-function ShoppingList({ shoppingItems, handleSort }) {
+function ShoppingList({ shoppingItems, handleSort, handleIngredient }) {
   return (
     <main className="bg-stone-50 text-stone-900">
       <div className="ml-5 mt-5 flex gap-5 items-center pt-3">
@@ -9,7 +9,7 @@ function ShoppingList({ shoppingItems, handleSort }) {
         <Button handleClick={() => handleSort("name")}>Name</Button>
         <Button handleClick={() => handleSort("category")}>Category</Button>
       </div>
-      <ItemList items={shoppingItems} />
+      <ItemList items={shoppingItems} handleIngredient={handleIngredient} />
     </main>
   );
 }
