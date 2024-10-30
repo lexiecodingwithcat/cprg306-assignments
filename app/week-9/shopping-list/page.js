@@ -5,7 +5,7 @@ import ShoppingList from "./shoppingList";
 import { useEffect, useState } from "react";
 import MealsIdea from "./meals-idea";
 import { useUserAuth } from "../_utils/auth-context";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const { user } = useUserAuth();
