@@ -7,6 +7,7 @@ function Form({ handleAddItem }) {
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState(1);
+
   function generateRandomId(length = 8) {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

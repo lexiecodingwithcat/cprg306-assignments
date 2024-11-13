@@ -6,33 +6,29 @@ import { useEffect, useState } from "react";
 import MealsIdea from "./meals-idea";
 import { useUserAuth } from "../_utils/auth-context";
 import { useRouter } from "next/navigation";
-import { addItem, getItems } from "../_service/shopping-list-service";
+import { getItems, addItem } from "../_service/shopping-list-service";
 
 function Page() {
   const { user } = useUserAuth();
   const router = useRouter();
-  function handleRedirect() {
-    router.push("../week-9");
-  }
-  if (!user) {
-    return (
-      <div>
-        <h2>Not authorized. Go back to the login page</h2>
-        <button onClick={handleRedirect}>Go back</button>
-      </div>
-    );
-  }
   const [shoppingItems, setShoppingItems] = useState([]);
   const [ingredient, setIngredient] = useState("");
   const [meals, setMeals] = useState([]);
+
+  function handleRedirect() {
+    router.push("../week-10");
+  }
 
   async function loadItems() {
     const items = await getItems(user.uid);
     setShoppingItems(items);
   }
+
   useEffect(() => {
-    loadItems();
-  }, [loadItems]);
+    if (user) {
+      loadItems();
+    }
+  }, [user]);
 
   function handleSort(sortAttribute) {
     const sortedItems = [...shoppingItems].sort((a, b) =>
@@ -41,14 +37,13 @@ function Page() {
     setShoppingItems(sortedItems);
   }
 
-  function handleAddItem(item) {
+  async function handleAddItem(item) {
     // setShoppingItems([...shoppingItems, item]);
-    const id = addItem(user.uid, item);
-    setShoppingItems([...shoppingItems, { id, ...item }]);
+    const id = await addItem(user.uid, item);
+    setShoppingItems((prevItems) => [...prevItems, { ...item, id }]);
   }
 
   function handleIngredient(itemName) {
-    // console.log(itemName);
     setIngredient(itemName);
   }
   async function fetchMealIdeas() {
@@ -64,6 +59,14 @@ function Page() {
     fetchMealIdeas();
   }, [ingredient]);
 
+  if (!user) {
+    return (
+      <div>
+        <h2>Not authorized. Go back to the login page</h2>
+        <button onClick={handleRedirect}>Go back</button>
+      </div>
+    );
+  }
   return (
     <div className="flex gap-20 ml-5 mb-5 mt-10">
       <div className=" w-1/4">

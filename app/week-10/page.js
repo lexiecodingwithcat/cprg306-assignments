@@ -12,12 +12,12 @@ function Page() {
   };
   return (
     <main>
-      <h1>Week 9</h1>
+      <h1>Week 10</h1>
 
       {user ? (
         <div className="flex flex-col">
           <p>Welcome, {user.displayName}</p>
-          <Link href="./week-9/shopping-list">Continue to shoppingList</Link>
+          <Link href="./week-10/shopping-list">Continue to shoppingList</Link>
           <button onClick={logout}>Logout</button>
         </div>
       ) : (
